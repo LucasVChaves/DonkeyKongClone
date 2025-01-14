@@ -11,6 +11,8 @@ Só precisamos implementar o primeiro nível do jogo.
 - [ ] Movimentação do jogador
 - [ ] DonkeyKong jogando barris
 - [ ] Escadas
+- [ ] Martelo
+- [ ] Barril de Fogo
 
 ### Arte
 
@@ -18,7 +20,9 @@ Vou tentar encontrar as sprites originais do jogo Donkey Kong, se não encontrar
 
 - [ ] Sprites do jogador (Mario)
 - [ ] Sprites do Donkey Kong
+- [ ] Sprites da Princesa
 - [ ] Sprites dos barris
+- [ ] Sprites do Fogo
 - [ ] Tileset para as plataformas e escadas
 
 ### Audio
