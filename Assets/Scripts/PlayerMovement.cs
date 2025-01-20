@@ -1,7 +1,3 @@
-// TODO: Se o player segurar o movimento na direcao
-// de uma parede ele trava nela
-// talvez implementar atrito??
-
 using System;
 using UnityEngine;
 
