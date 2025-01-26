@@ -1,12 +1,8 @@
-// TODO: Se o player segurar o movimento na direcao
-// de uma parede ele trava nela
-// talvez implementar atrito??
-
 using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
-    public float moveSpeed = 3.5f;
+    public float moveSpeed = 4.2f;
     public float jumpForce = 6f;
     public Transform groundCheckTransform;
     public float groundCheckRadius = .2f;
@@ -20,20 +16,23 @@ public class PlayerMovement : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
     }
 
+/*
     private void Update() {
         moveInput = Input.GetAxis("Horizontal");
         
         isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayer);
-        if (Input.GetButtonDown("Jump") && isGrounded) {
+        if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.UpArrow)) && isGrounded) {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
-
-        if (isGrounded) {
-            Debug.Log("ground");
-        }
     }
-
+*/
     private void FixedUpdate() {
+        moveInput = Input.GetAxis("Horizontal");
+        
+        isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayer);
+        if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.UpArrow)) && isGrounded) {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        }
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
     }
 
