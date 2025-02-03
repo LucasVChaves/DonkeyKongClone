@@ -8,9 +8,8 @@ public class PlayerMovement : MonoBehaviour {
     public Transform groundCheckTransform;
     public float groundCheckRadius = .2f;
     public LayerMask groundLayer;
-
     private Rigidbody2D rb;
-    private bool isGrounded;
+    public bool isGrounded;
     private bool isNearLadder = false;
     private bool isClimbing = false;
     private GameObject currLadder;
@@ -22,7 +21,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Update(){
         isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayer);
-        if ((Input.GetButtonDown("Jump")) && isGrounded) {
+        if (Input.GetButtonDown("Jump") && isGrounded) {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
 
@@ -31,6 +30,7 @@ public class PlayerMovement : MonoBehaviour {
             Debug.Log("Near Ladder");
             StartClimbing();
         }
+
         if (isClimbing && (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))) {
             isClimbing = false;
             Debug.Log("Off Ladder");

@@ -127,9 +127,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4734826978435928073}
+  - component: {fileID: 2894467495308554398}
   - component: {fileID: 6664498044894339250}
   - component: {fileID: 470947375700996260}
-  - component: {fileID: 2894467495308554398}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -155,6 +155,26 @@ Transform:
   - {fileID: 5393853863494165890}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2894467495308554398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8208643435198371209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e98d83e83671ee148ec20fae9039a56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3.5
+  climbSpeed: 0.6
+  jumpForce: 8
+  groundCheckTransform: {fileID: 3605523696416100388}
+  groundCheckRadius: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!50 &6664498044894339250
 Rigidbody2D:
   serializedVersion: 5
@@ -228,25 +248,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2894467495308554398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8208643435198371209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e98d83e83671ee148ec20fae9039a56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3.5
-  jumpForce: 8
-  groundCheckTransform: {fileID: 3605523696416100388}
-  groundCheckRadius: 0.2
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!1 &9204810270665264452
 GameObject:
   m_ObjectHideFlags: 0
