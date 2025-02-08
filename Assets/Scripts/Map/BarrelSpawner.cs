@@ -5,12 +5,14 @@ public class BarrelSpawner : MonoBehaviour {
     public GameObject barrelObj;
     public float barrelTimeout = 3.0f;
 
-    void Update() {
+    void Start() {
         StartCoroutine(WaitTimeout());
-        Instantiate(barrelObj, transform.position, Quaternion.identity);
     }
 
     IEnumerator WaitTimeout() {
-        yield return new WaitForSeconds(barrelTimeout);
+        while (true) {
+            Instantiate(barrelObj, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(barrelTimeout);
+        }
     }
 }

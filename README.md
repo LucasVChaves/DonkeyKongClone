@@ -9,7 +9,7 @@ Só precisamos implementar o primeiro nível do jogo.
 
 - [x] Plataformas
 - [x] Movimentação do jogador
-- [ ] DonkeyKong jogando barris
+- [x] DonkeyKong jogando barris
 - [x] Escadas
 - [ ] Martelo
 
