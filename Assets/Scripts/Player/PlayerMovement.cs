@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour {
     private void Update(){
         isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayer);
         if (Input.GetButtonDown("Jump") && isGrounded) {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            rb.linearVelocity = new Vector2(rb.linearVelocityX / 10000, jumpForce);
         }
 
         if (isNearLadder && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))) {
