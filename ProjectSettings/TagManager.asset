@@ -9,6 +9,7 @@ TagManager:
   - Platform
   - LadderTop
   - FireBarrel
+  - Barrel
   layers:
   - Default
   - TransparentFX

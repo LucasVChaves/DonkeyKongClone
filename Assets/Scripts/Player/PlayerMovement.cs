@@ -2,12 +2,16 @@ using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
+    [Header("Player")]
     public float moveSpeed = 4.2f;
     public float climbSpeed = 0.6f;
     public float jumpForce = 6f;
     public Transform groundCheckTransform;
     public float groundCheckRadius = .2f;
     public LayerMask groundLayer;
+    [Header("Martelo")]
+    public bool hasHammer = false;
+    public float hammerTimer = 0f;
     private Rigidbody2D rb;
     public bool isGrounded;
     private bool isNearLadder = false;
@@ -22,19 +26,22 @@ public class PlayerMovement : MonoBehaviour {
     private void Update(){
         isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayer);
         if (Input.GetButtonDown("Jump") && isGrounded) {
-            rb.linearVelocity = new Vector2(rb.linearVelocityX / 10000, jumpForce);
+            rb.linearVelocity = new Vector2(rb.linearVelocityX, jumpForce);
         }
 
-        if (isNearLadder && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))) {
+        if (!hasHammer && isNearLadder && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))) {
             isClimbing = true;
-            Debug.Log("Near Ladder");
             StartClimbing();
         }
 
         if (isClimbing && (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))) {
             isClimbing = false;
-            Debug.Log("Off Ladder");
             StopClimbing();
+        }
+
+        if (hasHammer) {
+            hammerTimer -= Time.deltaTime;
+            if (hammerTimer <= 0) DeactivateHammer();
         }
     }
 
@@ -63,6 +70,10 @@ public class PlayerMovement : MonoBehaviour {
             isNearLadder = true;
             currLadder = other.gameObject;
         }
+
+        if (other.CompareTag("Barrel") && hasHammer) {
+            Destroy(other.gameObject);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
@@ -72,6 +83,15 @@ public class PlayerMovement : MonoBehaviour {
             isClimbing = false;
             StopClimbing();
         }
+    }
+
+    public void ActivateHammer(float hammerDuration) {
+        hasHammer = true;
+        hammerTimer = hammerDuration;
+    }
+
+    private void DeactivateHammer() {
+        hasHammer = false;
     }
 
     // Desenha um circulo no groundcheck, para debug
