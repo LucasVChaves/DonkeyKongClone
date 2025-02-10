@@ -48,12 +48,12 @@ public class PlayerMovement : MonoBehaviour {
     private void StartClimbing() {
         rb.gravityScale = 0;
         transform.position = new Vector2(currLadder.transform.position.x, transform.position.y);
-        Debug.Log("Started Climbing");
+        //Debug.Log("Started Climbing");
     }
 
     private void StopClimbing() {
         rb.gravityScale = 1;
-        Debug.Log("Stop Climbing");
+        //Debug.Log("Stop Climbing");
     }
     private void FixedUpdate() {
         moveInput = Input.GetAxis("Horizontal");
@@ -88,10 +88,12 @@ public class PlayerMovement : MonoBehaviour {
     public void ActivateHammer(float hammerDuration) {
         hasHammer = true;
         hammerTimer = hammerDuration;
+        Debug.Log("MARTELO");
     }
 
     private void DeactivateHammer() {
         hasHammer = false;
+        Debug.Log("SEM MARTELO");
     }
 
     // Desenha um circulo no groundcheck, para debug

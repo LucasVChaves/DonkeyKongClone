@@ -35,12 +35,16 @@ public class BarrelBehaviour : MonoBehaviour {
         if (other.CompareTag("FireBarrel")) Destroy(gameObject);
 
         // Reinicia o jogo
-        if (other.CompareTag("Player")) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (other.CompareTag("Player")) {
+            PlayerMovement player = other.GetComponent<PlayerMovement>();
+            if (!player.hasHammer) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            else Destroy(gameObject);
+        }
     }
 
     // Movimenta pra baixo, desce a escada, depois continua rolando
     IEnumerator DescendLadder(Vector2 targetPos) {
-        Debug.Log("DESCENDO!");
+        //Debug.Log("DESCENDO!");
         isDescending = true;
         
         rb.bodyType = RigidbodyType2D.Kinematic;
