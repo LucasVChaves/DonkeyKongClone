@@ -10,9 +10,11 @@ public class BarrelBehaviour : MonoBehaviour {
     public float ladderChance = 0.25f;
     private Rigidbody2D rb;
     private bool isDescending = false;
+    private Animator animator;
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         rb.linearVelocity = new Vector2(speed, rb.linearVelocityY);
+        animator = GetComponent<Animator>();
     }
 
     void Update() {
@@ -33,19 +35,13 @@ public class BarrelBehaviour : MonoBehaviour {
         }
 
         if (other.CompareTag("FireBarrel")) Destroy(gameObject);
-
-        // Reinicia o jogo
-        if (other.CompareTag("Player")) {
-            PlayerMovement player = other.GetComponent<PlayerMovement>();
-            if (!player.hasHammer) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            else Destroy(gameObject);
-        }
     }
 
     // Movimenta pra baixo, desce a escada, depois continua rolando
     IEnumerator DescendLadder(Vector2 targetPos) {
         //Debug.Log("DESCENDO!");
         isDescending = true;
+        animator.SetBool("isDescending", true);
         
         rb.bodyType = RigidbodyType2D.Kinematic;
         Vector2 startPos = transform.position;
@@ -57,9 +53,10 @@ public class BarrelBehaviour : MonoBehaviour {
             yield return null;
         }
         transform.position = targetPos;
-
+        
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.linearVelocity = new Vector2(-speed, rb.linearVelocity.y);
         isDescending = false;
+        animator.SetBool("isDescending", false);
     }
 }

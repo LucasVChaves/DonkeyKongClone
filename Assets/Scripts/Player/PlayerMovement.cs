@@ -1,5 +1,8 @@
 using System;
+using System.Collections;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
     [Header("Player")]
@@ -12,15 +15,19 @@ public class PlayerMovement : MonoBehaviour {
     [Header("Martelo")]
     public bool hasHammer = false;
     public float hammerTimer = 0f;
+    public GameObject hammerObj;
     private Rigidbody2D rb;
     public bool isGrounded;
     private bool isNearLadder = false;
     private bool isClimbing = false;
     private GameObject currLadder;
     private float moveInput;
+    private Animator animator;
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
+        hammerObj.SetActive(false);
     }
 
     private void Update(){
@@ -46,6 +53,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void StartClimbing() {
+        animator.SetBool("isClimbing", true);
         rb.gravityScale = 0;
         transform.position = new Vector2(currLadder.transform.position.x, transform.position.y);
         //Debug.Log("Started Climbing");
@@ -53,11 +61,13 @@ public class PlayerMovement : MonoBehaviour {
 
     private void StopClimbing() {
         rb.gravityScale = 1;
+        animator.SetBool("isClimbing", false);
         //Debug.Log("Stop Climbing");
     }
     private void FixedUpdate() {
         moveInput = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+        animator.SetFloat("xVelocity", rb.linearVelocityX);
 
         if (isClimbing) {
             float verticalInput = Input.GetAxis("Vertical");
@@ -71,8 +81,9 @@ public class PlayerMovement : MonoBehaviour {
             currLadder = other.gameObject;
         }
 
-        if (other.CompareTag("Barrel") && hasHammer) {
-            Destroy(other.gameObject);
+        if (other.CompareTag("Barrel")) {
+            if (hasHammer) Destroy(other.gameObject);
+            else StartCoroutine(Die());
         }
     }
 
@@ -87,13 +98,21 @@ public class PlayerMovement : MonoBehaviour {
 
     public void ActivateHammer(float hammerDuration) {
         hasHammer = true;
+        hammerObj.SetActive(true);
         hammerTimer = hammerDuration;
-        Debug.Log("MARTELO");
+        //Debug.Log("MARTELO");
     }
 
     private void DeactivateHammer() {
         hasHammer = false;
-        Debug.Log("SEM MARTELO");
+        hammerObj.SetActive(false);
+        //Debug.Log("SEM MARTELO");
+    }
+
+    IEnumerator Die() {
+        animator.SetBool("isDead", true);
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     // Desenha um circulo no groundcheck, para debug
