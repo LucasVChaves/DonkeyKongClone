@@ -10,6 +10,7 @@ TagManager:
   - LadderTop
   - FireBarrel
   - Barrel
+  - Princess
   layers:
   - Default
   - TransparentFX

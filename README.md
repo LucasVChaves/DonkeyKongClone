@@ -3,6 +3,15 @@
 Trabalho da disciplina de Dev. De Jogos (DCC148)  
 Só precisamos implementar o primeiro nível do jogo.
 
+Neste jogo você controla o herói Lario que luta para tentar salvar a princesa do terrível vilão Monkey Kong.  
+Desvie dos barris ou quebre eles com o martelo para chegar até a princesa!
+
+Controles:
+
+- A - D: Movimenta o jogador.
+- W - S: Sobe e desce escadas.
+- Space: Pula.
+
 ## Roadmap
 
 ### Mecanicas
@@ -11,24 +20,16 @@ Só precisamos implementar o primeiro nível do jogo.
 - [x] Movimentação do jogador
 - [x] DonkeyKong jogando barris
 - [x] Escadas
-- [ ] Martelo
+- [x] Martelo
 
 ### Arte
 
 Vou tentar encontrar as sprites originais do jogo Donkey Kong, se não encontrar, vou tentar fazer algo parecido.
 
-- [ ] Sprites do jogador (Mario)
-- [ ] Sprites do Donkey Kong
-- [ ] Sprites da Princesa
-- [ ] Sprites dos barris
-- [ ] Sprites do Fogo
+- [x] Sprites do jogador
+- [x] Sprites do Donkey Kong
+- [x] Sprites da Princesa
+- [x] Sprites dos barris
 - [x] Tileset para as plataformas e escadas
-
-### Audio
-
-Acho que da pra pegar os efeitos sonoros e a música de fundo do jogo original.
-
-- [ ] Música de fundo
-- [ ] Efeitos sonoros
 
 **Nintendo, por favor, não me processe.**

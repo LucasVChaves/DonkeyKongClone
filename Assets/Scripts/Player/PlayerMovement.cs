@@ -85,6 +85,11 @@ public class PlayerMovement : MonoBehaviour {
             if (hasHammer) Destroy(other.gameObject);
             else StartCoroutine(Die());
         }
+
+        if (other.CompareTag("Princess")) {
+            Debug.Log("WON!");
+            Application.Quit();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
