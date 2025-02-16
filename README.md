@@ -10,7 +10,9 @@ Controles:
 
 - A - D: Movimenta o jogador.
 - W - S: Sobe e desce escadas.
-- Space: Pula.
+- Space: Pula.  
+
+**Os executáveis estão na aba de Releases do Github**
 
 ## Roadmap
 
